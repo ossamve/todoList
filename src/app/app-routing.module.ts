@@ -1,12 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { UsersComponent } from './pages/users/users.component';
+import { BoardComponent } from './pages/board/board.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'pokemons', pathMatch: 'full' },
-  // elle permet d'intercepter toutes les routes donc il faut toujours la mentionner en derniere position
-  {path: '**', component: PageNotFoundComponent}
-  
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'projects',
+        component: ProjectsComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
+      },
+      {
+        path: 'board',
+        component: BoardComponent
+      }
+
+    ]
+  }
 ];
 
 @NgModule({
